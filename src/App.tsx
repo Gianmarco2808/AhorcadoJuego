@@ -8,6 +8,7 @@ import { Letters } from './utils/Letters'
 import { LettersIncorrect } from './components/IncorrectLetters'
 import { arrayEquals } from './utils/ArrayEq'
 import { Modal } from './components/Modal'
+import { NameLetters } from './components/Letters'
 
 function App() {
 
@@ -44,6 +45,13 @@ function App() {
       setLetter(e.key.toUpperCase())
     }
   }
+
+  // Maneja los clics en los botones de letras
+  const handleLetterClick = (clickedLetter : string) => {
+    if (Letters.includes(clickedLetter)) {
+      setLetter(clickedLetter);
+    }
+  };
 
   //evento del teclado
   useEffect(() => {
@@ -99,6 +107,7 @@ function App() {
             <div className="game-container">
               <Figure attempts={attempts} />
               <Boxes newWord={newWord} />
+              <NameLetters onClick={handleLetterClick} />
             </div>
             <Button handleNewGame={handleNewGame} />
           </div>
